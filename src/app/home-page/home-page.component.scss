@@ -1,0 +1,29 @@
+:host {
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.centered {
+  justify-content: center;
+}
+
+.team-button {
+  margin: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.chat-box {
+  display: flex;
+  justify-content: center;
+  flex: 5;
+}
