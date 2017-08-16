@@ -1,0 +1,3 @@
+<div class="chat-messages" *ngFor="let message of messages">
+  <app-chat-message [message]="message" [ngClass]="{'user-message': message.sender === 'user'}" (onMessageCompleted)="nextMessage()"></app-chat-message>
+</div>

@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  // justify-content: flex-end;
+}
+
+.message-wrapper {
+  padding: 0 5.5%;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.message-out {
+  position: relative;
+  float: right;
+  background-color: #802727;
+  color: white;
+}
+
+.message-in {
+  position: relative;
+  float: left;
+  background-color: #848484;
+  color: white; 
+}
+
+.message {
+  border-radius: 8px;
+  padding: 6px 7px 8px 9px;
+  max-width: 85%;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+}

@@ -1,5 +1,5 @@
 <div class="options">
-  <div *ngFor="let option of options">
-    <app-chat-input-option [option]="option"></app-chat-input-option>
+  <div *ngFor="let option of options; let i = index;">
+    <app-chat-input-option (onOptionSelected)="optionSelected($event)" [option]="option" [number]="i+1"></app-chat-input-option>
   </div>
 </div>

@@ -20,4 +20,8 @@ export class ChatInputComponent implements OnInit {
     ];
   }
 
+  public optionSelected(event: any) {
+    console.log(event);
+  }
+
 }
