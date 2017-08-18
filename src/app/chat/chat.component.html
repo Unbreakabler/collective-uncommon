@@ -1,2 +1,11 @@
-<app-chat-display></app-chat-display>
-<app-chat-input></app-chat-input>
+<app-chat-display 
+  *ngIf="messages"
+  (onMessagePrintComplete)="showOptions()"
+  [messages]="messages">
+</app-chat-display>
+<app-chat-input
+  *ngIf="responseData"
+  [ngClass]="{ 'animateOut': animateOut }"
+  [options]="responseData.options" 
+  (onOptionSelected)="optionSelected($event)">
+</app-chat-input>

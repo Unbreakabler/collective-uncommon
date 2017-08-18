@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Message } from '../chat-display/chat-display.component';
+import { Message } from '../chat/chat-data';
 
 @Component({
   selector: 'app-chat-message',
@@ -14,24 +14,35 @@ export class ChatMessageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.checkInMessage();
+  }
+
+  public checkInMessage() {
     if (!this.message.out) {
       const originalMessage = this.message.text;
-      let count = 1;
-      this.message.text = originalMessage.substr(0, count);
-      const interval = setInterval(() => {
-        if (this.message.text.length < originalMessage.length) {
-          count++;
-          this.message.text = originalMessage.substr(0, count);
-        } else {
-          clearInterval(interval);
-          this.onMessageCompleted.emit(true);
-        }
-      }, 20);
+      this.message.text = originalMessage[0];
+      this.robotTyping(originalMessage);
     } else {
       setTimeout(() => {
         this.onMessageCompleted.emit(true);
       }, 100);
     }
+  }
+
+  robotTyping(originalMessage: string | string[]) {
+    let charCount = 0;
+    const interval = setInterval(() => {
+      if (this.message.text.length < originalMessage.length) {
+        charCount++;
+        // if (originalMessage[charCount] === punctuation) {
+
+        // }
+        this.message.text += originalMessage[charCount];
+      } else {
+        clearInterval(interval);
+        this.onMessageCompleted.emit(true);
+      }
+    }, 20);
   }
 
 }

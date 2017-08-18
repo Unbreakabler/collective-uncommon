@@ -12,6 +12,7 @@ import { ChatDisplayComponent } from './chat-display/chat-display.component';
 import { LinkComponent } from './link/link.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { ChatInputOptionComponent } from './chat-input-option/chat-input-option.component';
+import { LogoService } from './services/logo.service';
 
 const routes: Routes = [
   {
@@ -39,7 +40,9 @@ const routes: Routes = [
       routes,
     )
   ],
-  providers: [],
+  providers: [
+    LogoService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

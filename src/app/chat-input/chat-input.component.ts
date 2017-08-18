@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-chat-input',
@@ -7,21 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatInputComponent implements OnInit {
 
-  public options: any[];
+  @Output() onOptionSelected: EventEmitter<any> = new EventEmitter();
+  @Input() public options: any[];
 
   constructor() { }
 
-  ngOnInit() {
-    this.options = [
-      { text: 'An option 1' },
-      { text: 'An option 2' },
-      { text: 'An option 3' },
-      { text: 'An option 4' },
-    ];
-  }
+  ngOnInit() {}
 
   public optionSelected(event: any) {
-    console.log(event);
+    this.onOptionSelected.emit(event);
   }
 
 }

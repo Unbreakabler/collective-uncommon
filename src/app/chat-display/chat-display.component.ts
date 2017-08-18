@@ -1,59 +1,62 @@
-import { Component, OnInit, Input } from '@angular/core';
-
-export const messages = [
-  {
-    messageId: 1,
-    out: false,
-    text: 'What the fuck do you want?',
-  },
-  {
-    messageId: 2,
-    out: true,
-    text: 'What is this?',
-  },
-  {
-    messageId: 3,
-    out: false,
-    text: 'Uhhh, it\'s a conversation... what do you want?',
-  },
-  {
-    messageId: 4,
-    out: true,
-    text: 'If this is a conversation, who am I speaking too?',
-  },
-  {
-    messageId: 5,
-    out: false,
-    text: 'The Collective Uncommon.',
-  },
-];
-
-export interface Message {
-  messageId: number;
-  out: boolean;
-  text: string;
-}
+import { Component, OnChanges, Input, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
+import { Message } from '../chat/chat-data';
 
 @Component({
   selector: 'app-chat-display',
   templateUrl: './chat-display.component.html',
-  styleUrls: ['./chat-display.component.scss']
+  styleUrls: ['./chat-display.component.scss'],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatDisplayComponent implements OnInit {
+export class ChatDisplayComponent implements OnChanges {
 
+  @Output() public onMessagePrintComplete: EventEmitter<boolean> = new EventEmitter();
   @Input() public messages: Message[];
   count = 0;
+  messageQueue: Message[] = [];
+  currentMessage: Message;
 
   constructor() { }
 
-  ngOnInit() {
-    this.messages = [messages[this.count]];
+  ngOnChanges() {
+    if (this.messages[this.messages.length - 1].text instanceof Array) {
+      this.multiPartResponse();
+    }
+  }
+
+  public multiPartResponse() {
+    this.currentMessage = this.messages[this.messages.length - 1];
+    this.messages.pop();
+    console.log(this.currentMessage);
+    (this.currentMessage.text as string[]).forEach(text => {
+      this.messageQueue.push({
+        out: false,
+        text: text,
+        responseId: this.currentMessage.responseId,
+      });
+    });
+    this.nextMessage();
   }
 
   public nextMessage() {
-    this.count++;
-    if (messages[this.count]) {
-      this.messages.push(messages[this.count]);
+    if (this.messageQueue.length > 0) {
+      const delay = this.currentMessage.delay ? this.currentMessage.delay : 500;
+      setTimeout(() => {
+        this.messages.push(this.messageQueue.shift());
+      }, delay);
+    } else {
+      if (this.messages[this.messages.length - 1].out === false) {
+        this.onMessagePrintComplete.emit(true);
+      }
     }
   }
+
+  // public processMessageQueue() {
+  //   const interval = setInterval(() => {
+  //     if (this.messageQueue.length < 1) {
+  //       clearInterval(interval);
+  //     } else {
+  //       this.messages.push(this.messageQueue.shift());
+  //     }
+  //   }, 200);
+  // }
 }
