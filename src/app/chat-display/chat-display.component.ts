@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, ChangeDetectionStrategy, EventEmitter, ViewChild } from '@angular/core';
 import { Message } from '../chat/chat-data';
 
 @Component({
@@ -11,11 +11,13 @@ export class ChatDisplayComponent implements OnChanges {
 
   @Output() public onMessagePrintComplete: EventEmitter<boolean> = new EventEmitter();
   @Input() public messages: Message[];
+  @ViewChild('scroll') scrollContainer: any;
+
   count = 0;
   messageQueue: Message[] = [];
   currentMessage: Message;
 
-  constructor() { }
+  constructor() {}
 
   ngOnChanges() {
     if (this.messages[this.messages.length - 1].text instanceof Array) {
@@ -49,14 +51,4 @@ export class ChatDisplayComponent implements OnChanges {
       }
     }
   }
-
-  // public processMessageQueue() {
-  //   const interval = setInterval(() => {
-  //     if (this.messageQueue.length < 1) {
-  //       clearInterval(interval);
-  //     } else {
-  //       this.messages.push(this.messageQueue.shift());
-  //     }
-  //   }, 200);
-  // }
 }

@@ -3,8 +3,10 @@
   border-radius: 8px;
   padding: 6px 7px 8px 9px;
   margin-bottom: 10px;
-  background-color: #6C6C6C;
-  color: #EBEBEB;
-  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+  color: #F97E7E;
+  text-shadow: 
+    0 0 30px #F97E7E,
+    0 0 40px #CC3C3C,
+    0 0 70px #CC3C3C;
   cursor: pointer;
 } 

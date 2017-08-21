@@ -1,6 +1,5 @@
 :host {
   display: flex;
-  // justify-content: flex-end;
 }
 
 .message-wrapper {
@@ -12,20 +11,26 @@
 .message-out {
   position: relative;
   float: right;
-  background-color: #802727;
-  color: white;
+  color: #F97E7E;
+  text-shadow: 
+    0 0 30px #F97E7E,
+    0 0 40px #CC3C3C,
+    0 0 70px #CC3C3C;
 }
 
 .message-in {
+  // font-size: 50px;
   position: relative;
   float: left;
-  background-color: #848484;
-  color: white; 
+  color: #C6F4FF;
+  text-shadow: 
+    0 0 30px #C6F4FF,
+    0 0 40px #1B22FF,
+    0 0 70px #1B22FF;
 }
 
 .message {
   border-radius: 8px;
   padding: 6px 7px 8px 9px;
-  max-width: 85%;
-  box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+  max-width: 70%;
 }

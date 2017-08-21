@@ -1,5 +1,5 @@
 <div class="message-wrapper">
-  <div class="message" [ngClass]="{'message-out': message.out, 'message-in': !message.out}">
+  <div class="message message-{{index}}" [ngClass]="{'message-out': message.out, 'message-in': !message.out}">
     {{message.text}}
   </div>
 </div>
