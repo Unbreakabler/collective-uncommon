@@ -28,7 +28,7 @@ export class LogoComponent implements OnInit {
     setTimeout(() => {
       this.logoService.stopAnimation();
     }, 1200);
-    this.logoService.animation$.subscribe(() => {
+    this.logoService.animation$.subscribe(() => {}, () => {}, () => {
       console.log('this.logoService.animation');
       this.collective.fill = '#FFFFFF';
       this.collective.stroke = 'none';

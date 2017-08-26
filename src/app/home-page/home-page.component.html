@@ -1,9 +1,12 @@
-<div class="team-button">
-  <app-link></app-link>
+<div class="canvas-content">
+  <div class="team-button">
+    <app-link></app-link>
+  </div>
+  <div class="logo centered">
+    <app-logo></app-logo>
+  </div>
+  <div class="chat-box centered">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-<div class="logo centered">
-  <app-logo></app-logo>
-</div>
-<div class="chat-box centered">
-  <app-chat></app-chat>
-</div>
+<app-canvas-background></app-canvas-background>

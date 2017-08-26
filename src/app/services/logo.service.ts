@@ -11,6 +11,7 @@ export class LogoService {
   constructor() { }
 
   public playAnimation(speed: number = 1) {
+    this.animationSubject.next();
     this.animation.play(speed, this.completed());
   }
 
@@ -26,7 +27,7 @@ export class LogoService {
   // not sure why, just going to use a timeout for now.
   private completed() {
     setTimeout(() => {
-      this.animationSubject.next();
+      this.animationSubject.complete();
     }, 1000);
   }
 }

@@ -24,7 +24,7 @@ export const collectiveChatData: Message[] = [
   {
     id: 1,
     out: false,
-    text: 'What the fuck do you want?',
+    text: 'What do you want?',
     responseId: 1,
   },
   {
